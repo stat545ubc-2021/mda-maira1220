@@ -6,6 +6,8 @@ This work is an *R* approach to Data Analysis 💻 and modeling using the *tidyv
 
 With this first milestone, I:
 
--[x]Become familiar with my dataset
--[x]Choose four questions that I liked to answer with my data
--[x]Generate a reproducible and clear report using R Markdown
+-Become familiar with my dataset
+
+-Choose four questions that I liked to answer with my data
+
+-Generate a reproducible and clear report using R Markdown
