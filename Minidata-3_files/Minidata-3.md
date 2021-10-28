@@ -1,7 +1,7 @@
 Mini Data-Analysis Deliverable 3
 ================
 Maira Jimenez
-2021-10-26
+2021-10-27
 
 ## Introduction
 
@@ -111,6 +111,17 @@ library(lubridate)
     ## 
     ##     date, intersect, setdiff, union
 
+``` r
+library(cowplot)
+```
+
+    ## 
+    ## Attaching package: 'cowplot'
+
+    ## The following object is masked from 'package:lubridate':
+    ## 
+    ##     stamp
+
 From Milestone 2, you chose two research questions. What were they? Put
 them here.
 
@@ -122,16 +133,15 @@ Within the ACER genus, I would like to know if there is any relationship
 between the species and the diameter? And also if there is a
 relationship with the fact that some trees have a root barrier.
 
-Perhaps some species of trees typically have a larger diameter. Since I
-only focused on STRATHCONA Neighborhood.
+Perhaps some species of trees typically have a larger diameter. I only
+focused on STRATHCONA Neighborhood.
 
 **Research question 2**
 
-Considering the results from `Research question 2,` I choose three
-`species_names` and I analyze the relationship between the `diameter`and
-the `date_planted`. The question I would like to answer is: can I find
-any correlations between these two values? I hypothesize that if the
-trees are older, the diameter would be larger.
+Choosing three `species_names`, I want to analyze the relationship
+between the `diameter`and the `date_planted`. The question I would like
+to answer is: can I find any correlations between these two values? I
+hypothesize that if the trees are older, the diameter would be larger.
 
 <!----------------------------------------------------------------------------->
 
@@ -148,6 +158,11 @@ you’d like). If you don’t have such a plot, you’ll need to make one.
 Place the code for your plot below.
 
 <!-------------------------- Start your work below ---------------------------->
+
+Just as a reminder, I’m analyzing the dataset **`vancouver_trees`**:
+
+Acquired courtesy of The City of Vancouver’s Open Data Portal. This data
+set has 146,611 rows with 20 variables.
 
 ``` r
 vancouver_trees
@@ -171,6 +186,10 @@ vancouver_trees
     ## #   on_street_block <dbl>, on_street <chr>, neighbourhood_name <chr>,
     ## #   street_side_name <chr>, height_range_id <dbl>, diameter <dbl>, curb <chr>,
     ## #   date_planted <date>, longitude <dbl>, latitude <dbl>
+
+From this dataset, I filtered the information I’m interested in: the
+neighborhood `Strathcona` and all the trees from the genus `Acer`. I
+created a new dataset called `STRATHCONA_trees.`
 
 ``` r
 (STRATHCONA_trees<-vancouver_trees %>%
@@ -196,10 +215,22 @@ vancouver_trees
     ## #   street_side_name <chr>, height_range_id <dbl>, diameter <dbl>, curb <chr>,
     ## #   date_planted <date>, longitude <dbl>, latitude <dbl>
 
+Using the new dataset `STRATHCONA_trees`, I changed the visualization.
+The format of the values from the `date_planted` variable is \<date>
+year-day-month. Nevertheless, I found it is more convenient to change it
+to a “year month” format. We really don’t need the day. For this, I use
+the function `yearmonth`:
+
 ``` r
 Strathcona_dates <- STRATHCONA_trees %>%
    mutate(date_planted = yearmonth(date_planted))
+```
 
+Unfortunately, if we consider the month, we are going to have many
+values. For this reason I separate the Year and the Month using the
+factor `separate:`
+
+``` r
 (Strathcona_years <- Strathcona_dates%>% 
   separate(date_planted, into = c("Year", "Month"), sep=" "))
 ```
@@ -223,6 +254,11 @@ Strathcona_dates <- STRATHCONA_trees %>%
     ## #   street_side_name <chr>, height_range_id <dbl>, diameter <dbl>, curb <chr>,
     ## #   Year <chr>, Month <chr>, longitude <dbl>, latitude <dbl>
 
+And now, I have created two new categorical variables `diameter_level`
+and `age_leve`l; each one has four groups from an existing numerical
+variable `diameter` and `Year` correspondingly (the variable `Year` is
+the one that I just created).
+
 ``` r
 Strathcona_years_level <- Strathcona_years  %>%
   filter(species_name==c("RUBRUM", "GINNALA", "PLATANOIDES")) %>%
@@ -240,13 +276,18 @@ Strathcona_years_level <- Strathcona_years  %>%
     ## Warning in species_name == c("RUBRUM", "GINNALA", "PLATANOIDES"): longer object
     ## length is not a multiple of shorter object length
 
+And finally, I created a graph that has two geom layers. Here, we can
+visualize the relationship between each of the age levels and the
+diameter. I divided it into the three species of interest and included
+the other variable I’m interested in analyzing: the root barrier.
+
 ``` r
 ggplot(Strathcona_years_level) + geom_boxplot(aes(x = diameter, y = age_level)) +
   labs(y = "How old are they", x = "Diameter") +
   ggtitle("Correlation diameter vs age") + theme_bw() + geom_jitter(aes(x = diameter, y = age_level, color=root_barrier)) + facet_grid(cols = vars(species_name))
 ```
 
-![](Minidata-3_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](Minidata-3_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 <!----------------------------------------------------------------------------->
 
@@ -270,78 +311,117 @@ Now, choose two of the following tasks.
 3.  If your data has some sort of time-based column like a date (but
     something more granular than just a year):
 
-4.  Make a new column that uses a function from the \`lubridate\` or
-    \`tsibble\` package to modify your original time-based column. (3
-    points)
+    1.  Make a new column that uses a function from the \`lubridate\` or
+        \`tsibble\` package to modify your original time-based column.
+        (3 points)
 
--   Note that you might first have to \_make\_ a time-based column using
-    a function like \`ymd()\`, but this doesn’t count.
--   Examples of something you might do here: extract the day of the year
-    from a date, or extract the weekday, or let 24 hours elapse on your
-    dates.
+        -   Note that you might first have to \_make\_ a time-based
+            column using a function like \`ymd()\`, but this doesn’t
+            count.
 
-1.  Then, in a sentence or two, explain how your new column might be
-    useful in exploring a research question. (1 point for demonstrating
-    understanding of the function you used, and 1 point for your
-    justification, which could be subtle or speculative).
+        -   Examples of something you might do here: extract the day of
+            the year from a date, or extract the weekday, or let 24
+            hours elapse on your dates.
 
--   For example, you could say something like “Investigating the day of
-    the week might be insightful because penguins don’t work on
-    weekends, and so may respond differently”.
+    2.  Then, in a sentence or two, explain how your new column might be
+        useful in exploring a research question. (1 point for
+        demonstrating understanding of the function you used, and 1
+        point for your justification, which could be subtle or
+        speculative).
+
+        -   For example, you could say something like “Investigating the
+            day of the week might be insightful because penguins don’t
+            work on weekends, and so may respond differently”.
 
 <!-------------------------- Start your work below ---------------------------->
 
 \*\*Task Number\*\*: 1
 
+I chose task 1: I produce a new plot that reorders the factor
+`case_when`. In the first plot, the levels are ordered alphabetically; I
+used a bullet list with letters. The graph below shows how we can
+visualize it without the bullets:
+
 ``` r
-(Strathcona_years_level <- Strathcona_years  %>%
+Strathcona_years_level_no <- Strathcona_years  %>%
   filter(species_name==c("RUBRUM", "GINNALA", "PLATANOIDES")) %>%
-  mutate(diameter_level = factor(case_when(diameter < 5.00 ~ "very low",
+  mutate(diameter_level = case_when(diameter < 5.00 ~ "very low",
                                  diameter < 10.00 ~ "low",
                                  diameter < 30.00 ~ "moderate",
                                  diameter < 40.00 ~ "high",
-                                 TRUE ~ "very high"), levels= c("very low", "low", "moderate", "high", "very high"))) %>% 
-  mutate(age_level = factor(case_when(Year < 1996 ~ "more than 25 years",
+                                 TRUE ~ "very high")) %>% 
+  mutate(age_level = case_when(Year < 1996 ~ "more than 25 years",
                                  Year < 2006 ~ "between 15-25 years old",
                                  Year < 2016 ~ "between 5-15 years old",
-                                 TRUE ~ "recent"), levels=c("more than 25 years", "between 15-25 years old","between 5-15 years old", "recent"))))
+                                 TRUE ~ "recent"))
 ```
 
     ## Warning in species_name == c("RUBRUM", "GINNALA", "PLATANOIDES"): longer object
     ## length is not a multiple of shorter object length
 
-    ## # A tibble: 100 × 23
-    ##    tree_id civic_number std_street    genus_name species_name cultivar_name
-    ##      <dbl>        <dbl> <chr>         <chr>      <chr>        <chr>        
-    ##  1  157899          500 CAMPBELL AV   ACER       RUBRUM       BOWHALL      
-    ##  2   33061          350 E 2ND AV      ACER       RUBRUM       <NA>         
-    ##  3  229713          408 JACKSON AV    ACER       RUBRUM       AUTUMN FLAME 
-    ##  4  182056          415 ALEXANDER ST  ACER       RUBRUM       AUTUMN FLAME 
-    ##  5  182464          852 E HASTINGS ST ACER       RUBRUM       BOWHALL      
-    ##  6  180664          550 E HASTINGS ST ACER       RUBRUM       BOWHALL      
-    ##  7   69985          275 E CORDOVA ST  ACER       RUBRUM       <NA>         
-    ##  8   13365          527 MALKIN AV     ACER       PLATANOIDES  SUPERFORM    
-    ##  9  141337          738 EVANS AV      ACER       RUBRUM       BOWHALL      
-    ## 10  140544          738 EVANS AV      ACER       RUBRUM       BOWHALL      
-    ## # … with 90 more rows, and 17 more variables: common_name <chr>,
-    ## #   assigned <chr>, root_barrier <chr>, plant_area <chr>,
-    ## #   on_street_block <dbl>, on_street <chr>, neighbourhood_name <chr>,
-    ## #   street_side_name <chr>, height_range_id <dbl>, diameter <dbl>, curb <chr>,
-    ## #   Year <chr>, Month <chr>, longitude <dbl>, latitude <dbl>,
-    ## #   diameter_level <fct>, age_level <fct>
-
 ``` r
-ggplot(Strathcona_years_level) + geom_boxplot(aes(x = diameter, y = age_level)) +
+ggplot(Strathcona_years_level_no) + geom_boxplot(aes(x = diameter, y = age_level)) +
   labs(y = "How old are they", x = "Diameter") +
   ggtitle("Correlation diameter vs age") + theme_bw() + geom_jitter(aes(x = diameter, y = age_level, color=root_barrier)) + facet_grid(cols = vars(species_name))
 ```
 
-![](Minidata-3_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](Minidata-3_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+**The age levels are not ordered accordingly to how old they are, and it
+is not easy for the viewer. Again, they are *ordered alphabetically*
+from bottom to top (starting with `between 15-25` and finishing with
+`recent`).**
+
+Nevertheless, the `forcats` package is really helpful with this. Instead
+of adding “a), b), c), d)”, I can use factor and order the levels:
+levels=c(“more than 25 years”, “between 15-25 years old”,“between 5-15
+years old”, “recent”.
+
+``` r
+Strathcona_years_level_yes <- Strathcona_years  %>%
+  filter(species_name==c("RUBRUM", "GINNALA", "PLATANOIDES")) %>%
+  mutate(diameter_level = factor(case_when(diameter < 5.00 ~ "Very low",
+                                 diameter < 10.00 ~ "Low",
+                                 diameter < 30.00 ~ "Moderate",
+                                 diameter < 40.00 ~ "High",
+                                 TRUE ~ "Very high"), levels= c("Very low", "Low", "Moderate", "High", "Very high"))) %>% 
+  mutate(age_level = factor(case_when(Year < 1996 ~ "More than 25 years",
+                                 Year < 2006 ~ "Between 15-25 years old",
+                                 Year < 2016 ~ "Between 5-15 years old",
+                                 TRUE ~ "Recent"), levels=c("More than 25 years", "Between 15-25 years old","Between 5-15 years old", "Recent")))
+```
+
+    ## Warning in species_name == c("RUBRUM", "GINNALA", "PLATANOIDES"): longer object
+    ## length is not a multiple of shorter object length
+
+In the next plot we can visualize that the levels are order accordingly
+with time, which is important to see if there is a direct correlation
+with the diameter. The oldest is in the bottom and the earliest on the
+top. Moreover, I centered the plot tittle using `hjust` and changed the
+colour labels.
+
+``` r
+ggplot(Strathcona_years_level_yes) + geom_boxplot(aes(x = diameter, y = age_level)) +
+  labs(y = "How old are they", x = "Diameter") +
+  ggtitle("Correlation diameter vs age") + theme_bw() + geom_jitter(aes(x = diameter, y = age_level, color=root_barrier)) + facet_grid(cols = vars(species_name)) + theme(plot.title = element_text(hjust = 0.5))+ scale_colour_discrete(labels = c("Without root barrier", "With root barrier")) + labs(colour="")
+```
+
+![](Minidata-3_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 <!----------------------------------------------------------------------------->
 <!-------------------------- Start your work below ---------------------------->
 
 \*\*Task Number\*\*: 3
+
+I chose task 3 since I have a time-based column `<date>` which has
+year-day-month values.
+
+From the package `lubridate` I modified my original time-based column
+into only year-month values. Afterwards, I looked into the month number
+using the function `month`, January=1, February= 2 etc. and I created a
+new column called `num_month.` Using the function Group_by and
+summarise, I create a tibble where I can see the numbers of trees
+planted per month.
 
 ``` r
 vancouver_trees
@@ -437,6 +517,38 @@ vancouver_trees
     ## 11        12    48
     ## 12        NA   180
 
+It is said that the best time to plant is during the fall (September 1
+to November 30). For this reason, I was wondering which are the months
+when more trees were planted. To my surprise, trees were planted during
+the first four months of the year; it corresponds to winter and the
+beginning of spring. Using the function **`arrange`**, I ordered from
+the most significant number of trees planted to the least. Here, we
+should consider the NA values that correspond to the trees that we do
+not know when they were planted.
+
+``` r
+(observation_month2 <- Strathcona_dates %>%
+    group_by(num_month) %>%
+    summarise(Count = n()))%>%
+  arrange(desc(Count))
+```
+
+    ## # A tibble: 12 × 2
+    ##    num_month Count
+    ##        <dbl> <int>
+    ##  1        NA   180
+    ##  2         3    95
+    ##  3         1    76
+    ##  4        11    49
+    ##  5        12    48
+    ##  6         2    47
+    ##  7         4    20
+    ##  8        10     7
+    ##  9         8     5
+    ## 10         5     4
+    ## 11         7     4
+    ## 12         9     1
+
 <!----------------------------------------------------------------------------->
 
 # Exercise 2: Modelling
@@ -450,9 +562,9 @@ Pick a research question, and pick a variable of interest (we’ll call it
 
 \*\*Research Question\*\*:
 
-Choosing three `species_names` and I analyze the relationship between
-the `diameter`and the `date_planted`. The question I would like to
-answer is: can I find any correlations between these two values? I
+Choosing three `species_names`, I want to analyze the relationship
+between the `diameter`and the `date_planted`. The question I would like
+to answer is: can I find any correlations between these two values? I
 hypothesize that if the trees are older, the diameter would be larger.
 
 \*\*Variable of interest\*\*: Y=diameter
@@ -480,11 +592,21 @@ specifics in STAT 545.
 
 <!-------------------------- Start your work below ---------------------------->
 
-Considering the results from `Research question 2,` I choose three
-`species_names` and I analyze the relationship between the `diameter`and
-the `date_planted`. The question I would like to answer is: can I find
-any correlations between these two values? I hypothesize that if the
-trees are older, the diameter would be larger.
+Choosing three `species_names`. I want to analyze the relationship
+between the `diameter`and the `date_planted`. The question I would like
+to answer is: can I find any correlations between these two values? I
+hypothesize that if the trees are older, the diameter would be larger.
+
+I created a new column with only the year from the `planted-date`. With
+the function `min`, I get the oldest year which is 1993. Using this year
+I use the `lm` function to fit a model that makes predictions. Use `I()`
+to make the intercept so that the “beginning” of our dataset (1993)
+corresponds to ‘0’ in the model. This makes all the years in the data
+set relative to the first year, 1993. I store the outcome into
+`fitmodel.`
+
+And finally I used `unclass` function to take a look at how the `lm()`
+object actually looks like.
 
 ``` r
 vancouver_trees
@@ -1759,6 +1881,10 @@ Y, or a single value like a regression coefficient or a p-value.
 
 <!-------------------------- Start your work below ---------------------------->
 
+Using the `tidy` function from the `broom` package (“::” means I’m
+taking tidy from broom), I produce a tidy tibble from `fitmodel`, where
+I can see the p-value.
+
 ``` r
 (broom::tidy(fitmodel))
 ```
@@ -1792,6 +1918,10 @@ write it as a csv file in your \`output\` folder. Use the
 
 <!-------------------------- Start your work below ---------------------------->
 
+I took a summary table from Milestone 2 where I got the number of trees
+cut out for each street in Kitsilano. I arranged it in descending order
+to know where I could find more cutout trees.
+
 ``` r
 Cut_trees<-vancouver_trees %>%
   filter(plant_area %in% ("C")& neighbourhood_name %in% ("KITSILANO"))
@@ -1819,8 +1949,11 @@ print(observations_cut)
     ## 10 BAYSWATER ST     7
     ## # … with 14 more rows
 
+Using the function `write_csv` I’m able to save this tibble in the
+folder “output” inside my repository with the tittle “mytable.csv”.
+
 ``` r
-write_csv(observations_cut, here::here("~/Desktop/STAT545/myrepo/output", "mytable.csv"))
+write_csv(observations_cut, here::here("~/Desktop/STAT545/myrepo/mda-milestone/output", "mytable.csv"))
 ```
 
 <!----------------------------------------------------------------------------->
@@ -1836,12 +1969,21 @@ folder. Use the functions \`saveRDS()\` and \`readRDS()\`.
 
 <!-------------------------- Start your work below ---------------------------->
 
-``` r
-saveRDS(fitmodel, here::here("~/Desktop/STAT545/myrepo/output", "fitmodel.rds"))
-```
+In order to get a R binary file from `fitmodel` I use the function
+`saveRDS`. Also, use `here::here` function to save it in the same
+`output` folder.
 
 ``` r
-fitmodel2 <- gzfile(here::here("~/Desktop/STAT545/myrepo/output", "fitmodel.rds"))
+saveRDS(fitmodel, here::here("~/Desktop/STAT545/myrepo/mda-milestone/output", "fitmodel.rds"))
+```
+
+In order to read this file that I just created, I use the function
+`readRDS.` But first, I need to use the function `gzfile`to unzip it
+from the folder `output` and I stored it in `fitmodel2`. Using the
+function `readRDS,` I will be able to visualize the information again.
+
+``` r
+fitmodel2 <- gzfile(here::here("~/Desktop/STAT545/myrepo/mda-milestone/output", "fitmodel.rds"))
 readRDS(fitmodel2)
 ```
 
