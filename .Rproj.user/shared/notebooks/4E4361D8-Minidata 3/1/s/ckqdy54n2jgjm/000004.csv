@@ -1,0 +1,17 @@
+"0","Strathcona_years_level_yes <- Strathcona_years  %>%
+  filter(species_name==c(""RUBRUM"", ""GINNALA"", ""PLATANOIDES"")) %>%
+  mutate(diameter_level = factor(case_when(diameter < 5.00 ~ ""Very low"",
+                                 diameter < 10.00 ~ ""Low"",
+                                 diameter < 30.00 ~ ""Moderate"",
+                                 diameter < 40.00 ~ ""High"",
+                                 TRUE ~ ""Very high""), levels= c(""Very low"", ""Low"", ""Moderate"", ""High"", ""Very high""))) %>% 
+  mutate(age_level = factor(case_when(Year < 1996 ~ ""More than 25 years"",
+                                 Year < 2006 ~ ""Between 15-25 years old"",
+                                 Year < 2016 ~ ""Between 5-15 years old"",
+                                 TRUE ~ ""Recent""), levels=c(""More than 25 years"", ""Between 15-25 years old"",""Between 5-15 years old"", ""Recent"")))
+"
+"2","Warning in species_name == c(""RUBRUM"", ""GINNALA"", ""PLATANOIDES"") :"
+"2","
+ "
+"2"," longer object length is not a multiple of shorter object length
+"

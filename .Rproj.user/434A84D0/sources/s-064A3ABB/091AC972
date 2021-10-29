@@ -1,0 +1,30 @@
+{
+    "id": "091AC972",
+    "path": "~/Desktop/STAT545/myrepo/mda-milestone/Milestone 3/Minidata 3.Rmd",
+    "project_path": "Milestone 3/Minidata 3.Rmd",
+    "type": "r_markdown",
+    "hash": "1472806978",
+    "contents": "",
+    "dirty": false,
+    "created": 1635454154829.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "rmdVisualMode": "true",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "1",
+        "rmdVisualModeLocation": "225:0",
+        "cursorPosition": "5,2",
+        "scrollLine": "54"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1635468143,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1635468143905,
+    "read_only": false,
+    "read_only_alternatives": []
+}

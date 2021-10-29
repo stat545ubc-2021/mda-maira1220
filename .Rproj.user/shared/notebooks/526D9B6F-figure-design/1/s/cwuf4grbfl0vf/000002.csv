@@ -1,0 +1,5 @@
+"0","ggplot(lincoln_temps, aes(x = mean_temp, y = month_long)) +
+  geom_density_ridges()
+"
+"2","Picking joint bandwidth of 3.37
+"

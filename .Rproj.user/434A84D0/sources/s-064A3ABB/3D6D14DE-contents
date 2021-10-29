@@ -1,0 +1,219 @@
+---
+title: "Milestone 1"
+author: "Maira Jimenez"
+date: "`r Sys.Date()`"
+output:
+  md_document: default
+  html_document:
+    theme: cerulean
+    number_sections: yes
+    toc: yes
+    fig_width: 7
+    fig_height: 4.5
+---
+
+# Introduction
+
+This work is an \*R\* approach to Data Analysis and modeling using the \*tidyverse\* packages. First, I became familiar with the different datasets and their visualizations of the various features and their (inter-related) properties. I mainly used \*dplyr\* for data manipulation and \*ggplot2\* for visualization. Since this is my first-ever data analysis, I added some explanations on how they work. These comments will help me in my future analysis and for readers to follow up on my work.
+
+With this first milestone, I:
+
+-   Become familiar with my dataset
+
+-   Choose four questions that I liked to answer with my data
+
+-   Generate a reproducible and clear report using R Markdown
+
+# Choose my favorite dataset
+
+## Load libraries, functions, and data files
+
+It is essential to load all the necessary packages at the top of the script to overview what I will need. I divided the packages into three sets: Visualization, Wrangle, and Model.
+
+```{r}
+#install.packages("devtools")
+#devtools::install_github("UBC-MDS/datateachr")
+# vis
+library('ggplot2') # visualization
+library('ggforce')  # visualization
+library('tidyverse')  # visualization
+
+# wrangle
+library('dplyr') # data manipulation
+library('tidyr') # data manipulation
+library('naniar')  # data manipulation
+library('visdat') # data manipulation
+
+# model
+library('datateachr') 
+```
+
+## Datasets
+
+Out of the seven datasets available in the **datateachr** package, I chose four that I liked based on their description. These are my choices:
+
+### vancouver_trees
+
+The street tree dataset includes a listing of public trees on boulevards in the City of Vancouver and provides data on tree coordinates, species and other related characteristics (dataset from City of Vancouver's Open Data Portal), it currently has 146,611 rows and 20 columns.
+
+```{r}
+vancouver_trees
+```
+
+With the function `summary`, I got a data overview of the dataset **`vancouver_trees`**, the type of variables (character, numerical) and the basic distribution information. The features *`longitude`*, *`date_planted`*, and *`latitude`* have missing values. On the other hand, within character type value, the missing ones can't be seen with this function. Some of the character values are *`std_street`, `genus_name`,* and *`species_name`*.
+
+```{r}
+summary(vancouver_trees)
+```
+
+### flow_sample
+
+Acquired courtesy of The Government of Canada's Historical Hydrometric Database, it currently has 218 rows and 7 columns.
+
+```{r}
+flow_sample 
+```
+
+Regarding the overview of the dataset **`flow_sample`**, we can see seven features. *`Station_id`, `extreme_type`* and *`sym`* are character type and the others are numerical. There are two missing values in *`month`*, *`day`*and *`flow`* values.
+
+```{r}
+summary(flow_sample)
+```
+
+### cancer_sample
+
+Dataset from UCI Machine Learning Repository and it currently has 569 rows and 32 columns.
+
+```{r}
+cancer_sample
+```
+
+Almost all the features are numerical except for the `diagnosis` variable. It is essential to mention that the values of a categorical variable can be given in numerical codes, but that doesn't make the variable quantitative; that is the `ID` case. There are no missing values in this dataset.
+
+```{r}
+summary(cancer_sample)
+
+```
+
+### apt_buildings
+
+Dataset from The City of Toronto's Open Data Portal. It currently has 3455 rows and 37 columns.
+
+```{r}
+apt_buildings
+```
+
+The last overview from `apt_buildings` has 37 features, where nine are numerical. Within the numerical, the `no_barrier_free_accessible_units` is the feature with more missing values: 154. Nevertheless, there are no quantitative variables.
+
+```{r}
+summary(apt_buildings)
+```
+
+## My decision
+
+From these four datasets, I chose **`flow_sample`** and **`vancouver_trees`**. Based on my knowledge of dplyr I found at least three attributes about each of these datasets that might be helpful for the analysis.
+
+1.  **`vancouver_trees`**: Acquired courtesy of The City of Vancouver's Open Data Portal. This data set has 146,611 rows with 20 variables. This data set has different categorical values such as `species_name`, `cultivar_name`, `common_nam`e, and others used for the analysis. The diameter values are the only quantitative data and can be used to do statistical analysis. The categorical values also can be used to analyze their frequency. This is a large dataset that could be appropriate to analyze.
+
+2.  **`flow_sample`**: Acquired courtesy of The Government of Canada's Historical Hydrometric Database. The first attribute is that this dataset has 218 rows and 7 columns (variables); from which the variables `year`, `month`, `day`and `station_id` are numerical, and also they are classified as categorical (second attribute). Finally, the third attribute is the variable `flow`, their values are quantitative data that can be used to do a statistical analysis.
+
+Finally, I chose the **`vancouver_trees`** dataset since it has different types of variables. Compared with the dataset **`flow-sample`**, the **`vancouver_trees`** has a more significant number of rows and might be interesting to analyze.
+
+# Exploring my dataset
+
+For this task, I dive deeper into my data **`vancouver_trees`** (using *`dplyr`*and *`ggplot`*). For each analysis provide a brief explanation of why I chose each one.
+
+## Distribution
+
+Many of the variables that data scientists study are *quantitative* or *numerical*. Their values are numbers on which we can perform arithmetic. An example of this is the diameter of the trees in the dataset that I chose.
+
+Using `ggplot2` and the `facet_zoom`, we can visualize the distribution of the diameter of each tree. In the graph on the right, all the data is shown; however, it seems to be some outliers. For this reason, I use the facet_zoom function that will help to zoom in on the graph. Within this function, I can delimit the values ​​of x and y. However, the values ​​are very varied. Perhaps a good way to visualize would be to classify the data by neighborhood, and thus, we will have a better visualization of the distribution.
+
+```{r}
+vancouver_trees %>% 
+  ggplot(aes(diameter)) +
+  geom_bar() +
+  facet_zoom(ylim = c(0, 100), xlim=c(0,100))
+```
+
+## Filter
+
+I am interested in visualizing all the trees corresponding to Genus "ACER" in the Kitsilano neighborhood. For this reason, I created a new table using the function `filter`.
+
+Something fundamental to mention is that within this work, two packages include the function filter: `dplyr::filter()`and `stats::filter()`. Therefore, it is essential to specify that the function`filter,`used in this section, is from the package `dplyr` and not `stats`. Moreover, we visualize only 2,211 rows corresponding to the trees with the ACER genus in the Kitsilano neighborhood using the function `glimpse`and the new table `Kitsilano_acertrees`.
+
+```{r}
+
+Kitsilano_acertrees<-(dplyr::filter(vancouver_trees,neighbourhood_name == "KITSILANO" & genus_name == "ACER"))
+glimpse(Kitsilano_acertrees)
+summary(Kitsilano_acertrees)
+```
+
+In the following plot, we can visualize the distribution of the diameter of all the trees that correspond to Genus "ACER" in the Kitsilano neighborhood. As I mentioned before, since I narrow the values we have a better visualization of the distribution.
+
+```{r}
+Kitsilano_acertrees %>% 
+  ggplot(aes(diameter)) +
+  geom_bar() +
+  facet_zoom(ylim = c(0, 100), xlim=c(0,60))
+```
+
+## Frequency
+
+Considering this last dataset **Kitsilano_acertrees**, I plot the frequency of height range of the Acer trees in Kitsilano. The height range is classify as follow: 0-10 for every 10 feet (e.g., 0 = 0-10 ft, 1 = 10-20 ft, 2 = 20-30 ft, and10 = 100+ ft).
+
+I divided the values of trees planted by the curb and the not planted by the curb. Using a boxplot, we can see more trees by the curb (Curb ="Y"), and the frequency is lower at a higher height range in both cases. Also, there is a red dot representing the mean for each dataset.
+
+As I already mentioned, the classification of the height range is an integer (from the Latin integer meaning "whole") is colloquially **defined as a number that can be written without a fractional component**. Integers are *discrete*, not continuous, but I use this variable as "continuous" in order to exemplify the usage of the mean in this type of plot.
+
+```{r}
+ggplot(Kitsilano_acertrees, aes(x=height_range_id, y=curb)) +
+  geom_boxplot(width = 0.4, fill = "white") +
+  geom_jitter( 
+              width = 0.1, size = 1,alpha = 0.5)+
+  stat_summary(fun=mean, geom="point", shape=20, size=5, color="red", fill="red")
+```
+
+## Missing Values
+
+In this fourth and last section, I Investigated how many missing values are per variable. Missing values are ubiquitous in data and need to be carefully explored and handled.
+
+Using the `cbind` and `lapply`function I get the list of all the variables, and the count of the **NA** found within those variables. `Lapply`function helps perform operations on list objects and returns a list object of the same length as the original set.
+
+```{r}
+cbind(
+   lapply(
+     lapply(vancouver_trees, is.na)
+     , sum)
+   )
+```
+
+Moreover, if we want to visualize these data in a graph, we can use the function `gg_miss_var`. This function will help us visualize the whole data frame at once and provide information on whether the data is missing.
+
+So here, the `date_planted` (76,548 values missing) and `cultivar_name` (67,559 values missing) have the most missing data.
+
+```{r}
+gg_miss_var(vancouver_trees) + labs(y = "How many values are missing")
+```
+
+We can also identify missing key variables using `vis_miss_upset` and their relationship among the missing values of different variables. The default option of `gg_miss_upset` is taken from `UpSetR::upset` - which is to use up to 5 sets and up to 40 interactions. Some examples of these interaction are :
+
+-   40,141 rows have missing values of `cultivar_name`and `date_planted` at the same time.
+
+-   it shows 165 rows have missing values in `plant_area`, `longitude`, `latitude`, `cultivar_name` and `date_ planted` at the same time
+
+```{r}
+gg_miss_upset(vancouver_trees)
+```
+
+# Research questions
+
+So far, I have chosen a dataset and gotten familiar with it through exploring the data. Now it's time to figure out 4 research questions that I would like to answer with my data.
+
+-   Within three different neighborhoods, I would like to know which is the distribution of the tree genus.
+
+-   Is there any relationship between the genus and the fact that these trees have a root barrier? Perhaps some specific genus trees need a root barrier. I will choose some genus or specific trees and then analyze the possible correlation.
+
+-   I will choose a tree within the list of `common_name`, and I will analyze the relationship between the diameter and the `date_planted`. The question I would like to answer is: can I find any correlations between these two values? I hypothesize that if the trees are older, the diameter would be larger.
+
+-   Finally, I would like to see the distribution of the trees in specific neighborhoods (perhaps Kitsilano) regarding the plant_area and their clasification B = behind sidewalk, G = in tree grate, N = no sidewalk, and C = cutout. Specifically, I can analyze how many trees are cut out and see which street block they are.
