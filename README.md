@@ -7,12 +7,12 @@ In this repository you will find 4 folders which are describe as follows:
 
 |📁**Folders in the repository**📂| **Files** |
 |:------:|:------:|
-|[Milestone 1](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 1 focuses on becoming familiar with my dataset and define my research questions|**Contains [Minidata.md](), [Minidata.Rmd]() and a [folder with figures]()**|
-|[Milestone 2](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 2 focuses on exploring the concept of *tidy data* more in-depth and investigate further into my research questions|**Contains [Minidata-M2.md](), [Minidata M2.Rmd]() and a [folder with figures]()**|
-|[Milestone 3](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 3 I sharpened some of my results obtained in M2 |**Contains [Minidata-3.md](), [Minidata 3.Rmd]() and a [folder with figures]()**|
+|[Milestone 1](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 1 focuses on becoming familiar with my dataset and define my research questions|**Contains [Minidata.md](https://github.com/stat545ubc-2021/mda-maira1220/blob/main/Milestone%201/Minidata.md), [Minidata.Rmd](https://github.com/stat545ubc-2021/mda-maira1220/blob/main/Milestone%201/Minidata.Rmd) and a [folder with figures](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201/Minidata_files/figure-markdown_strict)**|
+|[Milestone 2](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 2 focuses on exploring the concept of *tidy data* more in-depth and investigate further into my research questions|**Contains [Minidata-M2.md](https://github.com/stat545ubc-2021/mda-maira1220/blob/main/Milestone%202/Minidata-M2.md), [Minidata M2.Rmd](https://github.com/stat545ubc-2021/mda-maira1220/blob/main/Milestone%202/Minidata%20M2.Rmd) and a [folder with figures](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%202/Minidata-M2_files/figure-markdown_strict)**|
+|[Milestone 3](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 3 I sharpened some of my results obtained in M2 |**Contains [Minidata-3.md](https://github.com/stat545ubc-2021/mda-maira1220/blob/main/Milestone%203/Minidata-3.md), [Minidata 3.Rmd]() and a [folder with figures]()**|
 [output](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): This is the folder were I stored some documents created from the Milestone 3 |**Contains [mytable.csv](), [fitmodel.rds]()**|
 
-**Want to know more?? :neckbeard:    Feel free to explore each of the folders to get more information!! :trollface: **
+Want to know more?? :neckbeard:    Feel free to explore each of the folders to get more information!! :trollface: 
 
 
 
