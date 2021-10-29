@@ -1,16 +1,18 @@
 
 Introduction
 =================================
+This is a public repository project as part of *STAT 545A* at UBC :school:. This project is an essential part of the course and is an *R* approach to Data Analysis 💻 and modeling using the different packages described in each folder. Since this is my first-ever data analysis, I added some explanations on how they work. These comments will help me in my future analysis and for readers to follow up on my work. 
 
-This work is an *R* approach to Data Analysis 💻 and modeling using the *tidyverse* packages. First, I became familiar with the different datasets and their visualizations of the various features and their (inter-related) properties. I mainly used *dplyr* for data manipulation and *ggplot2* for visualization. Since this is my first-ever data analysis, I added some explanations on how they work. These comments will help me in my future analysis and for readers to follow up on my work.
+In this repository you will find 4 folders which are describe as follows:
 
-First milestone, I:
+|📁**Folders in the repository**📂| **Files** |
+|:------:|:------:|
+|[Milestone 1](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 1 focuses on becoming familiar with my dataset and define my research questions|**Contains [Minidata.md](), [Minidata.Rmd]() and a [folder with figures]()**|
+|[Milestone 2](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 2 focuses on exploring the concept of *tidy data* more in-depth and investigate further into my research questions|**Contains [Minidata-M2.md](), [Minidata M2.Rmd]() and a [folder with figures]()**|
+|[Milestone 3](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): Milestone 3 I sharpened some of my results obtained in M2 |**Contains [Minidata-3.md](), [Minidata 3.Rmd]() and a [folder with figures]()**|
+[output](https://github.com/stat545ubc-2021/mda-maira1220/tree/main/Milestone%201): This is the folder were I stored some documents created from the Milestone 3 |**Contains [mytable.csv](), [fitmodel.rds]()**|
 
--Become familiar with my dataset
+**Want to know more?? :neckbeard:    Feel free to explore each of the folders to get more information!! :trollface: **
 
--Choose four questions that I liked to answer with my data
 
--Generate a reproducible and clear report using R Markdown
 
-Second milestone: 
-This time, I explore the concept of tidy data more in-depth and investigate further into my research questions defined in milestone 1. As in milestone 1, I added some explanations for each of the four research questions. These comments will help me in my future analysis and for readers to follow up on my work.
