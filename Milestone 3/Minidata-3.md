@@ -1,9 +1,9 @@
 Mini Data-Analysis Deliverable 3
 ================
 Maira Jimenez
-2021-10-27
+2021-10-28
 
-## Introduction
+## Introductiongithub_document
 
 # Welcome to your last milestone in your mini data analysis project!
 
@@ -340,7 +340,7 @@ Now, choose two of the following tasks.
 I chose task 1: I produce a new plot that reorders the factor
 `case_when`. In the first plot, the levels are ordered alphabetically; I
 used a bullet list with letters. The graph below shows how we can
-visualize it without the bullets:
+visualize it without the bullets \[a), b),c), d)\]:
 
 ``` r
 Strathcona_years_level_no <- Strathcona_years  %>%
@@ -375,10 +375,18 @@ from bottom to top (starting with `between 15-25` and finishing with
 Nevertheless, the `forcats` package is really helpful with this. Instead
 of adding “a), b), c), d)”, I can use factor and order the levels:
 levels=c(“more than 25 years”, “between 15-25 years old”,“between 5-15
-years old”, “recent”.
+years old”, “recent”. Moreover, right now we don’t need column such as
+civic_number, the longitud and latitude. Therefore, we can get rid of
+them using `selec`t function. Also, the names for each column (variable)
+is understandable but not “assigned”. This value indicates whether the
+address is made up to associate the tree with a nearby lot (Y=Yes or
+N=No). I find convenient to change the name to “Associated_to_lot” using
+the `fct_recode` function.
 
 ``` r
-Strathcona_years_level_yes <- Strathcona_years  %>%
+(Strathcona_years_level_yes <- Strathcona_years %>%
+  select(-civic_number,-longitude,-latitude)%>%
+    rename(Associated_to_lot= assigned )%>%
   filter(species_name==c("RUBRUM", "GINNALA", "PLATANOIDES")) %>%
   mutate(diameter_level = factor(case_when(diameter < 5.00 ~ "Very low",
                                  diameter < 10.00 ~ "Low",
@@ -388,11 +396,30 @@ Strathcona_years_level_yes <- Strathcona_years  %>%
   mutate(age_level = factor(case_when(Year < 1996 ~ "More than 25 years",
                                  Year < 2006 ~ "Between 15-25 years old",
                                  Year < 2016 ~ "Between 5-15 years old",
-                                 TRUE ~ "Recent"), levels=c("More than 25 years", "Between 15-25 years old","Between 5-15 years old", "Recent")))
+                                 TRUE ~ "Recent"), levels=c("More than 25 years", "Between 15-25 years old","Between 5-15 years old", "Recent"))))
 ```
 
     ## Warning in species_name == c("RUBRUM", "GINNALA", "PLATANOIDES"): longer object
     ## length is not a multiple of shorter object length
+
+    ## # A tibble: 100 × 20
+    ##    tree_id std_street    genus_name species_name cultivar_name common_name      
+    ##      <dbl> <chr>         <chr>      <chr>        <chr>         <chr>            
+    ##  1  157899 CAMPBELL AV   ACER       RUBRUM       BOWHALL       BOWHALL RED MAPLE
+    ##  2   33061 E 2ND AV      ACER       RUBRUM       <NA>          RED MAPLE        
+    ##  3  229713 JACKSON AV    ACER       RUBRUM       AUTUMN FLAME  AUTUMN FLAME RED…
+    ##  4  182056 ALEXANDER ST  ACER       RUBRUM       AUTUMN FLAME  AUTUMN FLAME RED…
+    ##  5  182464 E HASTINGS ST ACER       RUBRUM       BOWHALL       BOWHALL RED MAPLE
+    ##  6  180664 E HASTINGS ST ACER       RUBRUM       BOWHALL       BOWHALL RED MAPLE
+    ##  7   69985 E CORDOVA ST  ACER       RUBRUM       <NA>          RED MAPLE        
+    ##  8   13365 MALKIN AV     ACER       PLATANOIDES  SUPERFORM     SUPERFORM NORWAY…
+    ##  9  141337 EVANS AV      ACER       RUBRUM       BOWHALL       BOWHALL RED MAPLE
+    ## 10  140544 EVANS AV      ACER       RUBRUM       BOWHALL       BOWHALL RED MAPLE
+    ## # … with 90 more rows, and 14 more variables: Associated_to_lot <chr>,
+    ## #   root_barrier <chr>, plant_area <chr>, on_street_block <dbl>,
+    ## #   on_street <chr>, neighbourhood_name <chr>, street_side_name <chr>,
+    ## #   height_range_id <dbl>, diameter <dbl>, curb <chr>, Year <chr>, Month <chr>,
+    ## #   diameter_level <fct>, age_level <fct>
 
 In the next plot we can visualize that the levels are order accordingly
 with time, which is important to see if there is a direct correlation
@@ -408,6 +435,10 @@ ggplot(Strathcona_years_level_yes) + geom_boxplot(aes(x = diameter, y = age_leve
 
 ![](Minidata-3_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
+From this graph we can conclude that there is not a correlation between
+the diameter and the age from the Ginnala, Platanoides and rubrum
+species trees. More analysis per tree are needed.
+
 <!----------------------------------------------------------------------------->
 <!-------------------------- Start your work below ---------------------------->
 
@@ -417,11 +448,13 @@ I chose task 3 since I have a time-based column `<date>` which has
 year-day-month values.
 
 From the package `lubridate` I modified my original time-based column
-into only year-month values. Afterwards, I looked into the month number
-using the function `month`, January=1, February= 2 etc. and I created a
-new column called `num_month.` Using the function Group_by and
-summarise, I create a tibble where I can see the numbers of trees
-planted per month.
+into only year-month values. Afterwards, I looked into the number of the
+month using the function `month`, January=1, February= 2 etc. and I
+created a new column called `num_month.` Using the function `Group_by`
+and `summarise`, I created a tibble where I can see the numbers of trees
+planted per month. Finally, I used the function drop_na to get rid of
+all the NA values that correspond to the trees that we do not know when
+they were planted.
 
 ``` r
 vancouver_trees
@@ -498,10 +531,11 @@ vancouver_trees
 ``` r
 (observation_month <- Strathcona_dates %>%
     group_by(num_month) %>%
-    summarise(Count = n()))
+    summarise(Count = n()))%>%
+drop_na()
 ```
 
-    ## # A tibble: 12 × 2
+    ## # A tibble: 11 × 2
     ##    num_month Count
     ##        <dbl> <int>
     ##  1         1    76
@@ -515,39 +549,39 @@ vancouver_trees
     ##  9        10     7
     ## 10        11    49
     ## 11        12    48
-    ## 12        NA   180
+
+What can information I get from this tibble?
 
 It is said that the best time to plant is during the fall (September 1
 to November 30). For this reason, I was wondering which are the months
 when more trees were planted. To my surprise, trees were planted during
 the first four months of the year; it corresponds to winter and the
 beginning of spring. Using the function **`arrange`**, I ordered from
-the most significant number of trees planted to the least. Here, we
-should consider the NA values that correspond to the trees that we do
-not know when they were planted.
+the most significant number of trees planted to the least. I can
+conclude that most of the trees were planted during winter.
 
 ``` r
 (observation_month2 <- Strathcona_dates %>%
     group_by(num_month) %>%
     summarise(Count = n()))%>%
-  arrange(desc(Count))
+  arrange(desc(Count))%>%
+drop_na()
 ```
 
-    ## # A tibble: 12 × 2
+    ## # A tibble: 11 × 2
     ##    num_month Count
     ##        <dbl> <int>
-    ##  1        NA   180
-    ##  2         3    95
-    ##  3         1    76
-    ##  4        11    49
-    ##  5        12    48
-    ##  6         2    47
-    ##  7         4    20
-    ##  8        10     7
-    ##  9         8     5
-    ## 10         5     4
-    ## 11         7     4
-    ## 12         9     1
+    ##  1         3    95
+    ##  2         1    76
+    ##  3        11    49
+    ##  4        12    48
+    ##  5         2    47
+    ##  6         4    20
+    ##  7        10     7
+    ##  8         8     5
+    ##  9         5     4
+    ## 10         7     4
+    ## 11         9     1
 
 <!----------------------------------------------------------------------------->
 
@@ -1882,7 +1916,7 @@ Y, or a single value like a regression coefficient or a p-value.
 <!-------------------------- Start your work below ---------------------------->
 
 Using the `tidy` function from the `broom` package (“::” means I’m
-taking tidy from broom), I produce a tidy tibble from `fitmodel`, where
+taking tidy from broom), I produced a tidy tibble from `fitmodel`, where
 I can see the p-value.
 
 ``` r

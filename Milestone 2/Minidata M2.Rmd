@@ -404,7 +404,7 @@ ggplot(aes(x=longitude, y=latitude)) +
              size=1)
 ```
 
-# Task 2: Tidy my data 
+# Task 2: Tidy my data
 
 In this task, I will do several exercises to reshape my data using the `tidyr` package.
 

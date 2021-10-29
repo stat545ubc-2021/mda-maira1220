@@ -480,12 +480,12 @@ be a good idea to analyze more this part.
 
     STRATHCONA_trees %>% tbl_summary(by=root_barrier, include = species_name) %>%   modify_spanning_header(c("stat_1", "stat_2") ~ "**Root barrier (Y=Yes & N=No)**")
 
-<div id="vpsjiianwr" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="wlitopgfuy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#vpsjiianwr .gt_table {
+#wlitopgfuy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -510,7 +510,7 @@ be a good idea to analyze more this part.
   border-left-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_heading {
+#wlitopgfuy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -522,7 +522,7 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_title {
+#wlitopgfuy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -532,7 +532,7 @@ be a good idea to analyze more this part.
   border-bottom-width: 0;
 }
 
-#vpsjiianwr .gt_subtitle {
+#wlitopgfuy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -542,13 +542,13 @@ be a good idea to analyze more this part.
   border-top-width: 0;
 }
 
-#vpsjiianwr .gt_bottom_border {
+#wlitopgfuy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_col_headings {
+#wlitopgfuy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -563,7 +563,7 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_col_heading {
+#wlitopgfuy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -583,7 +583,7 @@ be a good idea to analyze more this part.
   overflow-x: hidden;
 }
 
-#vpsjiianwr .gt_column_spanner_outer {
+#wlitopgfuy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,15 +595,15 @@ be a good idea to analyze more this part.
   padding-right: 4px;
 }
 
-#vpsjiianwr .gt_column_spanner_outer:first-child {
+#wlitopgfuy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vpsjiianwr .gt_column_spanner_outer:last-child {
+#wlitopgfuy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vpsjiianwr .gt_column_spanner {
+#wlitopgfuy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -615,7 +615,7 @@ be a good idea to analyze more this part.
   width: 100%;
 }
 
-#vpsjiianwr .gt_group_heading {
+#wlitopgfuy .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -637,7 +637,7 @@ be a good idea to analyze more this part.
   vertical-align: middle;
 }
 
-#vpsjiianwr .gt_empty_group_heading {
+#wlitopgfuy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -652,15 +652,15 @@ be a good idea to analyze more this part.
   vertical-align: middle;
 }
 
-#vpsjiianwr .gt_from_md > :first-child {
+#wlitopgfuy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vpsjiianwr .gt_from_md > :last-child {
+#wlitopgfuy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vpsjiianwr .gt_row {
+#wlitopgfuy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -679,7 +679,7 @@ be a good idea to analyze more this part.
   overflow-x: hidden;
 }
 
-#vpsjiianwr .gt_stub {
+#wlitopgfuy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -691,7 +691,7 @@ be a good idea to analyze more this part.
   padding-left: 12px;
 }
 
-#vpsjiianwr .gt_summary_row {
+#wlitopgfuy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -701,7 +701,7 @@ be a good idea to analyze more this part.
   padding-right: 5px;
 }
 
-#vpsjiianwr .gt_first_summary_row {
+#wlitopgfuy .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -711,7 +711,7 @@ be a good idea to analyze more this part.
   border-top-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_grand_summary_row {
+#wlitopgfuy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -721,7 +721,7 @@ be a good idea to analyze more this part.
   padding-right: 5px;
 }
 
-#vpsjiianwr .gt_first_grand_summary_row {
+#wlitopgfuy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -731,11 +731,11 @@ be a good idea to analyze more this part.
   border-top-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_striped {
+#wlitopgfuy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vpsjiianwr .gt_table_body {
+#wlitopgfuy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -744,7 +744,7 @@ be a good idea to analyze more this part.
   border-bottom-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_footnotes {
+#wlitopgfuy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -758,13 +758,13 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_footnote {
+#wlitopgfuy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#vpsjiianwr .gt_sourcenotes {
+#wlitopgfuy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -778,41 +778,41 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#vpsjiianwr .gt_sourcenote {
+#wlitopgfuy .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#vpsjiianwr .gt_left {
+#wlitopgfuy .gt_left {
   text-align: left;
 }
 
-#vpsjiianwr .gt_center {
+#wlitopgfuy .gt_center {
   text-align: center;
 }
 
-#vpsjiianwr .gt_right {
+#wlitopgfuy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vpsjiianwr .gt_font_normal {
+#wlitopgfuy .gt_font_normal {
   font-weight: normal;
 }
 
-#vpsjiianwr .gt_font_bold {
+#wlitopgfuy .gt_font_bold {
   font-weight: bold;
 }
 
-#vpsjiianwr .gt_font_italic {
+#wlitopgfuy .gt_font_italic {
   font-style: italic;
 }
 
-#vpsjiianwr .gt_super {
+#wlitopgfuy .gt_super {
   font-size: 65%;
 }
 
-#vpsjiianwr .gt_footnote_marks {
+#wlitopgfuy .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
