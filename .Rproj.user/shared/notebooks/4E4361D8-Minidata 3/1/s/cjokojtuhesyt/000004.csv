@@ -1,5 +1,0 @@
-"0","write_csv(observations_cut, here::here(""~/Desktop/STAT545/myrepo/md-milestone/output"", ""mytable.csv""))
-"
-"2","Error: Cannot open file for writing:
-* '/Users/MairaJimenez/Desktop/STAT545/myrepo/md-milestone/output/mytable.csv'
-"
