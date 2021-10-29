@@ -50,6 +50,8 @@ the data I picked.
 
     library(gtsummary)
 
+    ## #Uighur
+
 # Task 1: Process and summarize my data
 
 Just as a reminder, I’m analyzing the dataset **`vancouver_trees`**:
@@ -480,12 +482,12 @@ be a good idea to analyze more this part.
 
     STRATHCONA_trees %>% tbl_summary(by=root_barrier, include = species_name) %>%   modify_spanning_header(c("stat_1", "stat_2") ~ "**Root barrier (Y=Yes & N=No)**")
 
-<div id="wlitopgfuy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gzhvnxxcay" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#wlitopgfuy .gt_table {
+#gzhvnxxcay .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -510,7 +512,7 @@ be a good idea to analyze more this part.
   border-left-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_heading {
+#gzhvnxxcay .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -522,7 +524,7 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_title {
+#gzhvnxxcay .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -532,7 +534,7 @@ be a good idea to analyze more this part.
   border-bottom-width: 0;
 }
 
-#wlitopgfuy .gt_subtitle {
+#gzhvnxxcay .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -542,13 +544,13 @@ be a good idea to analyze more this part.
   border-top-width: 0;
 }
 
-#wlitopgfuy .gt_bottom_border {
+#gzhvnxxcay .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_col_headings {
+#gzhvnxxcay .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -563,7 +565,7 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_col_heading {
+#gzhvnxxcay .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -583,7 +585,7 @@ be a good idea to analyze more this part.
   overflow-x: hidden;
 }
 
-#wlitopgfuy .gt_column_spanner_outer {
+#gzhvnxxcay .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -595,15 +597,15 @@ be a good idea to analyze more this part.
   padding-right: 4px;
 }
 
-#wlitopgfuy .gt_column_spanner_outer:first-child {
+#gzhvnxxcay .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wlitopgfuy .gt_column_spanner_outer:last-child {
+#gzhvnxxcay .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wlitopgfuy .gt_column_spanner {
+#gzhvnxxcay .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -615,7 +617,7 @@ be a good idea to analyze more this part.
   width: 100%;
 }
 
-#wlitopgfuy .gt_group_heading {
+#gzhvnxxcay .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -637,7 +639,7 @@ be a good idea to analyze more this part.
   vertical-align: middle;
 }
 
-#wlitopgfuy .gt_empty_group_heading {
+#gzhvnxxcay .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -652,15 +654,15 @@ be a good idea to analyze more this part.
   vertical-align: middle;
 }
 
-#wlitopgfuy .gt_from_md > :first-child {
+#gzhvnxxcay .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wlitopgfuy .gt_from_md > :last-child {
+#gzhvnxxcay .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wlitopgfuy .gt_row {
+#gzhvnxxcay .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -679,7 +681,7 @@ be a good idea to analyze more this part.
   overflow-x: hidden;
 }
 
-#wlitopgfuy .gt_stub {
+#gzhvnxxcay .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -691,7 +693,7 @@ be a good idea to analyze more this part.
   padding-left: 12px;
 }
 
-#wlitopgfuy .gt_summary_row {
+#gzhvnxxcay .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -701,7 +703,7 @@ be a good idea to analyze more this part.
   padding-right: 5px;
 }
 
-#wlitopgfuy .gt_first_summary_row {
+#gzhvnxxcay .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -711,7 +713,7 @@ be a good idea to analyze more this part.
   border-top-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_grand_summary_row {
+#gzhvnxxcay .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -721,7 +723,7 @@ be a good idea to analyze more this part.
   padding-right: 5px;
 }
 
-#wlitopgfuy .gt_first_grand_summary_row {
+#gzhvnxxcay .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -731,11 +733,11 @@ be a good idea to analyze more this part.
   border-top-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_striped {
+#gzhvnxxcay .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wlitopgfuy .gt_table_body {
+#gzhvnxxcay .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -744,7 +746,7 @@ be a good idea to analyze more this part.
   border-bottom-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_footnotes {
+#gzhvnxxcay .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -758,13 +760,13 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_footnote {
+#gzhvnxxcay .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#wlitopgfuy .gt_sourcenotes {
+#gzhvnxxcay .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -778,41 +780,41 @@ be a good idea to analyze more this part.
   border-right-color: #D3D3D3;
 }
 
-#wlitopgfuy .gt_sourcenote {
+#gzhvnxxcay .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#wlitopgfuy .gt_left {
+#gzhvnxxcay .gt_left {
   text-align: left;
 }
 
-#wlitopgfuy .gt_center {
+#gzhvnxxcay .gt_center {
   text-align: center;
 }
 
-#wlitopgfuy .gt_right {
+#gzhvnxxcay .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wlitopgfuy .gt_font_normal {
+#gzhvnxxcay .gt_font_normal {
   font-weight: normal;
 }
 
-#wlitopgfuy .gt_font_bold {
+#gzhvnxxcay .gt_font_bold {
   font-weight: bold;
 }
 
-#wlitopgfuy .gt_font_italic {
+#gzhvnxxcay .gt_font_italic {
   font-style: italic;
 }
 
-#wlitopgfuy .gt_super {
+#gzhvnxxcay .gt_super {
   font-size: 65%;
 }
 
-#wlitopgfuy .gt_footnote_marks {
+#gzhvnxxcay .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;

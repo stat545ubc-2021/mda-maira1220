@@ -3,7 +3,7 @@ Mini Data-Analysis Deliverable 3
 Maira Jimenez
 2021-10-28
 
-## Introductiongithub_document
+## Introduction
 
 # Welcome to your last milestone in your mini data analysis project!
 
